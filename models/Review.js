@@ -31,7 +31,7 @@ Review.init(
       validate: {
         len: {
           args: [1, 200],
-          msg: "Must be between 1 and 100 characters.",
+          msg: "Must be between 1 and 200 characters.",
         },
       },
     },

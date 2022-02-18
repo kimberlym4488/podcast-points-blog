@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { sequelize } = require("sequelize");
-const { User } = require("../../models");
+const { Podcast, Review, User } = require("../../models");
 //boilerplate code from class activity. Not tested for this project
 //see the withAuth helper function and use it in the other routes pages.
 
@@ -95,7 +95,6 @@ router.post("/logout", (req, res) => {
     });
   } else {
     res.status(404).end();
-   
   }
 });
 
