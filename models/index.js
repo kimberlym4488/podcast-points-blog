@@ -1,16 +1,29 @@
-const User = require('./User');
+const User = require("./User");
+const Podcast = require("./Podcast");
+const Review = require("./Review");
 
-//user has many posts
+//need to verify models with team
 
-//posts belongTo User
-//post has the foreign key - post table will have user_id foreign key. Post can point back to the user that it belongs to. 
+//User can have many reviews
+User.hasMany(Review, {
+  foreignKey: "user_id",
+  onDelete: "CASCADE",
+});
 
-//User hasMany comments
-//Comments belongTo user (comments table has the comment.user_id foreign key)
+// Reviews belong to a user
+Review.belongsTo(User, {
+  foreignKey: "user_id",
+});
 
-//Posts has many comments
-//Comments belongTo Post (Comment.post_id foreign key)
+// A podcast can have many reviews
+Podcast.hasMany(Review, {
+  foreignKey: "podcast_id",
+  onDelete: "CASCADE",
+});
 
+// Reviews belong to a podcast
+Review.belongsTo(Podcast, {
+  foreignKey: "podcast_id",
+});
 
-
-module.exports = { User, Project }
+module.exports = { User, Podcast, Review };

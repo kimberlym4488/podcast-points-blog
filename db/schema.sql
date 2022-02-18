@@ -1,3 +1,2 @@
-DROP DATABASE IF EXISTS museum_db;
-
-CREATE DATABASE museum_db;
+DROP DATABASE IF EXISTS podcast_db;
+CREATE DATABASE podcast_db;

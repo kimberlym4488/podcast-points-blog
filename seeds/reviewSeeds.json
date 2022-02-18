@@ -1,0 +1,14 @@
+[
+    {
+        "rating": "5",
+        "review": "These two have a wonderful chemistry!",
+        "user_id": "1",
+        "podcast_id": "1"
+    },
+    {
+        "rating": "3",
+        "review": "They're ok. Wish they had more recaps!",
+        "user_id": "2",
+        "podcast_id": "2"
+    }
+]
