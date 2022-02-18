@@ -17,16 +17,16 @@
     <img class = "backgroundImg" src="/assets/PodcastPoints_Header.png">
      </header>
   <nav class="justify-content-center ">
-    <a href="/">Home</a>
+    <a class="homeButton" href="/">Home</a>
     {{#if loggedIn}}
-    <button id="logout" class="btn btn-primary">Logout</button>
+    <button id="logout" class="logoutButton btn btn-light">Logout</button>
     {{else}}
-    <a href="/login">Login</a>
+    <a class="loginButton" href="/login">Login</a>
     {{/if}}
   </nav>
 
-
   <main class="container container-fluid mt-5">
+
     {{{ body }}}
   </main>
   <footer>

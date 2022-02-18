@@ -1,7 +1,10 @@
 const router = require("express").Router();
 const withAuth = require("../utils/auth");
 const { Tutor } = require("../models");
-const api = require('podcast-index-api')("HH7AMGUBSPCX9GVK9CUD", "CLj#K3RhpmHae3sW^PRNsKTuU#9uLhhpLX5W7BkZ")
+const api = require("podcast-index-api")(
+  "HH7AMGUBSPCX9GVK9CUD",
+  "CLj#K3RhpmHae3sW^PRNsKTuU#9uLhhpLX5W7BkZ"
+);
 
 // Use the custom middleware before allowing the user to access reviews on podcasts.
 router.get("/", async (req, res) => {
