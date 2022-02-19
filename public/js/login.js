@@ -14,7 +14,10 @@ const loginFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/");
+      document.location.replace(
+        "/?toast=" +
+          encodeURI(`Welcome ${username} You're logged in! It's time to share.`)
+      );
     } else {
       const invalidResponse = await response.json();
       userValidation.classList.remove("d-none");
@@ -39,7 +42,9 @@ const signupFormHandler = async (event) => {
     });
 
     if (response.ok) {
-      document.location.replace("/");
+      document.location.replace(
+        "/?toast=" + encodeURI(`Welcome ${username}! Bottoms up!`)
+      );
     } else {
       const duplicateUser = await response.json();
       userCreateValidation.classList.remove("d-none");

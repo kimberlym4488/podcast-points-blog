@@ -23,6 +23,7 @@
     "mysql2": "^2.2.5",
     "podcast-index-api": "^1.1.10",
     "sequelize": "^6.3.5",
+    "toastify": "^2.0.1",
     "validator": "^13.7.0"
   },
   "devDependencies": {
