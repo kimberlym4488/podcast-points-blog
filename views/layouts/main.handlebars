@@ -15,12 +15,12 @@
   <header class="d-flex justify-center align-center p-2">
     <img class = "backgroundImg" src="/assets/PodcastPoints_Header.png">
      </header>
-  <nav class="justify-content-center ">
-    <a class="homeButton" href="/">Home</a>
+  <nav class="sticky-top justify-content-center ">
+    <a class="homeButton" style="font-size:1.25rem" href="/">Home</a>
     {{#if loggedIn}}
-    <a class="logoutButton" href="#" id="logout">Logout</a>
+    <a class="logoutButton" style="font-size:1.25rem" href="#" id="logout">Logout</a>
     {{else}}
-    <a class="loginButton" href="/login">Login</a>
+    <a class="loginButton" style="font-size:1.25rem" href="/login">Login</a>
     {{/if}}
   </nav>
 
@@ -28,7 +28,7 @@
 
     {{{ body }}}
   </main>
-  
+
   <footer>
       
   </footer>
