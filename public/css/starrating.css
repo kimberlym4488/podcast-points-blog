@@ -1,9 +1,9 @@
 .rating-css div {
-  color: var(--primary);
+  color: rgb(236, 5, 142);
   font-size: 30px;
   font-family: sans-serif;
   font-weight: 800;
-  text-align: center;
+  text-align: left;
   text-transform: uppercase;
   padding: 20px 0;
 }
@@ -21,4 +21,7 @@
 .rating-css label:active {
   transform: scale(0.8);
   transition: 0.3s ease;
+}
+
+.rating-css .star-icon {
 }

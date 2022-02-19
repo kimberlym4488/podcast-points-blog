@@ -111,7 +111,7 @@ img {
   flex: 0 1 300px;
   border: 7px double var(--dark);
   border-radius: 10px;
-  background-color: var(--light);
+  background-color: rgb(48, 51, 46, 0.3);
   color: var(--dark);
 }
 
@@ -141,7 +141,13 @@ img {
 .card-body {
   font-size: 1.4rem;
   text-align: center;
-  font-weight: bold;
+  font-weight: lighter;
+  color: #ec058e;
+}
+
+.card-text {
+  font-family: "LouisGeorgeCafe" !important;
+  color: #30332e;
 }
 
 .gallery-name {
