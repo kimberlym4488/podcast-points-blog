@@ -1,37 +1,21 @@
 const router = require("express").Router();
-const { withAuthJson } = require("../../utils/auth");
+const { withAuth, withAuthJson } = require("../../utils/auth");
 const { Review, Podcast, User } = require("../../models");
 
-//get one review
-router.get("/:id", withAuthJson, async (req, res) => {
-  try {
-    const reviewData = await Review.findByPk({
-      ...req.body,
-      user_id: req.session.user_id,
-      podcast_id: req.session.podcast_id,
-    });
 
-    const review = reviewData.toJSON();
 
-    res.json(review);
-  } catch (err) {
-    res.status(400).json({
-      message: "Bad request",
-    });
-  }
-});
-
-// POST /api/reviews -- create one review
+// POST /api/review -- create one review
 router.post("/", withAuthJson, async (req, res) => {
   try {
     const reviewData = await Review.create({
       ...req.body,
-      user_id: req.session.user_id,
+     "user_id": req.session.id,
+      username:req.session.username,
     });
 
-    const review = reviewData.toJSON();
+    const reviews = reviewData.toJSON();
 
-    res.json(review);
+    res.json(reviews);
   } catch (err) {
     res.status(400).json({
       message: "Bad request",
@@ -39,22 +23,8 @@ router.post("/", withAuthJson, async (req, res) => {
   }
 });
 
-// GET /api/reviews/ -- get all reviews
-router.get("/", withAuthJson, async (req, res) => {
-  try {
-    const reviewData = await Review.findAll({
-      include: [{ model: Podcast }],
-    });
-    const review = reviewData.toJSON();
 
-    res.json(review);
-  } catch (err) {
-    res.status(400).json({
-      message: "Bad request",
-    });
-  }
-});
-// PUT /api/reviews/:id -- update one review
+// PUT /api/review/:id -- update one review
 
 router.put("/:id", withAuthJson, async (req, res) => {
   try {
@@ -79,7 +49,7 @@ router.put("/:id", withAuthJson, async (req, res) => {
 });
 
 // DELETE /api/reviews/:id -- delete one review
-router.get("/", withAuthJson, async (req, res) => {
+router.delete("/", withAuthJson, async (req, res) => {
   try {
     const reviewDelete = await Review.destroy({
       where: {

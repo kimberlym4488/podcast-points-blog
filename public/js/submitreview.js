@@ -6,6 +6,7 @@ const submitReview = async (event) => {
       document.querySelector(".star-icon [type=radio]:checked").value
     ),
     review: document.querySelector("#review").value,
+    user_id: parseInt(document.querySelector(".username").value),
   };
 
   const response = await fetch("/api/review", {
