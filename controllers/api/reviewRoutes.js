@@ -2,15 +2,12 @@ const router = require("express").Router();
 const { withAuth, withAuthJson } = require("../../utils/auth");
 const { Review, Podcast, User } = require("../../models");
 
-
-
 // POST /api/review -- create one review
-router.post("/", withAuthJson, async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
     const reviewData = await Review.create({
       ...req.body,
-     "user_id": req.session.id,
-      username:req.session.username,
+      user_id: req.session.user_id,
     });
 
     const reviews = reviewData.toJSON();
@@ -22,7 +19,6 @@ router.post("/", withAuthJson, async (req, res) => {
     });
   }
 });
-
 
 // PUT /api/review/:id -- update one review
 
