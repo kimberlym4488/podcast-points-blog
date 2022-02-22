@@ -75,18 +75,29 @@ router.get("/podcast", withAuth, async (req, res) => {
 router.get("/view", withAuth, async (req, res) => {
   try {
     const reviewData = await Review.findAll({
-      include: [{ model: User, attributes: ["id", "username"] }],
-      include: [{ model: Podcast, attributes: ["id", "name"] }],
+      include: [
+        {
+          model: User,
+          attributes: ["id", "username"],
+        },
+        { model: Podcast, 
+          attributes: ["id", "name"] },
+      ],
+      where: {
+        user_id: req.session.user_id,
+      },
     });
-    const reviews = reviewData.toJSON();
+    const reviews = reviewData.map((review) => review.toJSON());
 
     res.render("view", {
       reviews,
       loggedIn: req.session.loggedIn,
     });
+    console.log(reviews)
   } catch (err) {
     res.status(400).json({
-      message: "Testing if it is going here.",
+      message:
+        "THis is an Error. It's getting through to home route with auth. Testing if it is going here.",
     });
   }
 });
@@ -97,7 +108,7 @@ router.get("/view/:id", withAuth, async (req, res) => {
     const reviewData = await Review.findByPk(req.params.id, {
       include: [{ model: User, attributes: ["username"] }],
     });
-    const reviews = reviewData.toJSON();
+    const reviews = reviewData.map((review) => review.toJSON());
 
     res.render("view", {
       reviews,

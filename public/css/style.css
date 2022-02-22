@@ -79,16 +79,6 @@ nav a:hover {
   text-decoration: none;
 }
 
-.gallery {
-  flex: 4;
-  background-color: #fff;
-  padding: 50px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-}
-
 .btn-no-style {
   background: none;
   border: none;
@@ -150,21 +140,15 @@ img {
   color: #30332e;
 }
 
-.gallery-name {
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  text-shadow: 2px 2px 5px var(--secondary);
-  border: 10px groove var(--light);
-  padding-top: 30px;
-  padding-bottom: 30px;
-  padding-right: 100px;
-  padding-left: 100px;
-}
-
 /* LAYOUT */
 .container {
   display: flex;
   flex-flow: column wrap;
-  align-content: flex-start;
   align-items: center;
+}
+
+.signup-form{
+  display:flex;
+  justify-content:center;
+
 }
