@@ -7,6 +7,7 @@ const submitReview = async (event) => {
     ),
     review: document.querySelector("#review").value,
   };
+  //add in conditional logic to do a PUT method if the user has already reviewed this pod.
 
   const response = await fetch("/api/review", {
     method: "POST",
