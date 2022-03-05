@@ -1,16 +1,17 @@
 const logout = async () => {
   const response = await fetch("/api/user/logout", {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
 
   if (response.ok) {
-    document.location.replace(
-      "/logout/?toast=" + uriencoded("You've been logged out. Happy listening!"),
-    );
+    localStorage.setItem("toast", "You are now logged out.");
+    document.location.replace("/");
   } else {
-    alert("Failed to log out.");
+    localStorage.setItem("toast", "Failed to log out.");
+    toastIt(true);
   }
 };
-
 document.querySelector("#logout").addEventListener("click", logout);

@@ -24,10 +24,9 @@
   </head>
 
   <body>
-    <header class="d-flex justify-center align-center p-2">
-      <img class="backgroundImg" src="/assets/PodcastPoints_Header.png" />
-    </header>
-    <nav class="sticky-top justify-content-center">
+
+    <nav class="sticky-top align-items-center">
+      <div class="align-items-center p-3" style="font-weight:light; color:#009ecc; font-size:1.5rem">Podcast of the Month</div>
       <a class="homeButton" style="font-size:1.25rem" href="/">Home</a>
       {{#if loggedIn}}
         <a
@@ -41,28 +40,28 @@
       {{/if}}
     </nav>
 
-    <main class="container container-fluid mt-5">
+    <main class="container ">
       {{{body}}}
     </main>
 
     <footer class="text-center bg-light pt-3">
-      <p class="mb-0" style="font-size:.75rem"> Made by Kim "Podcast" Moran</p>
+      <p class="mb-0" style="font-size:.75rem"> Made by Kim Moran</p>
       <p>
         <a
           class="bi bi-github p-1"
-          style=" font-size:1.5rem; color:#ec058e; background-color:transparent"
+          style=" font-size:1.5rem; color:black; background-color:transparent"
           href="https://github.io/kimberlym4488"
         ></a>
 
         <a
           class="bi bi-envelope-open-heart p-1"
-          style=" font-size:1.5rem; color:#ec058e; background-color:transparent"
+          style=" font-size:1.5rem; color:black; background-color:transparent"
           href="mailto:kmorandev@gmail.com"
         ></a>
 
         <a
           class="bi bi-linkedin p-1"
-          style="font-size:1.5rem; color:#ec058e; background-color:transparent"
+          style="font-size:1.5rem; color:black; background-color:transparent"
           href="https://linkedin.com/kim-moran-82158371/"
         ></a>
       </p>

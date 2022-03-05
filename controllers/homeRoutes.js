@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { withAuth, withAuthJson } = require("../utils/auth");
-const { Podcast, Review, User } = require("../models");
+const { Podcast, Review, User, Interest } = require("../models");
 const { sequelize } = require("sequelize");
 // const api = require("podcast-index-api")(
 //   "HH7AMGUBSPCX9GVK9CUD",
@@ -32,60 +32,58 @@ router.get("/login", (req, res) => {
   });
 });
 
+//signup
+router.get("/signup", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+  res.render("signup");
+});
+
 // get one podcast
-router.get("/podcast/:id", withAuth, async (req, res) => {
-  try{
-  const podcastsData = await Podcast.findByPk(); // Server-side render
+router.get("/podcast/:id", async (req, res) => {
+  try {
+    const podcastsData = await Podcast.findByPk(); // Server-side render
 
-  const podcasts = podcastsData.map((podcast) => podcast.toJSON());
+    const podcasts = podcastsData.map((podcast) => podcast.toJSON());
 
-  res.render("podcast", {
-    podcasts,
-    loggedIn: req.session.loggedIn,
-    user_id: req.session.user_id,
-    username: req.session.username,
-  });
- } catch (err) {
+    res.render("podcast", {
+      podcasts,
+      loggedIn: req.session.loggedIn,
+      user_id: req.session.user_id,
+      username: req.session.username,
+    });
+  } catch (err) {
     res.status(400).json({
       message:
         "THis is an Error. It's getting through to home route with auth. Testing if it is getting to the podcast, id route.",
     });
   }
-}) 
+});
 
 //get all podcasts
-router.get("/podcast", withAuth, async (req, res) => {
+router.get("/podcast", async (req, res) => {
   try {
-    // const userData = await User.findByPk({
-    //   where: {
-    //     user_id: req.session.user_id,
-    //   },
-    // });
-    console.log("Step 1")
     const podcastsData = await Podcast.findAll({
       include: [
-        { 
+        {
           model: Review,
           where: {
             user_id: req.session.user_id,
           },
         },
       ],
-  })
-    console.log(podcastsData);
+    });
     const podcasts = podcastsData.map((podcast) => podcast.toJSON());
 
     res.render("podcast", {
       podcasts,
-      // users,
       loggedIn: req.session.loggedIn,
-      // user_id: req.session.user_id,
-      // username: req.session.username,
     });
   } catch (err) {
     res.status(400).json({
-      message:
-        "Bad request. This is getting to the /podcast but having an error somehow.",
+      message: "Bad request",
     });
   }
 });
@@ -124,18 +122,16 @@ router.get("/view", withAuth, async (req, res) => {
 router.get("/review/:id", withAuth, async (req, res) => {
   try {
     const reviewData = await Review.findByPk(req.params.id, {
-     
       where: {
         user_id: req.session.user_id,
       },
     });
-    console.log(reviewData)
+    console.log(reviewData);
     const reviews = reviewData.map((review) => review.toJSON());
     console.log(reviews);
     res.render("reviewone", {
       reviews,
       loggedIn: req.session.loggedIn,
-   
     });
   } catch (err) {
     res.status(400).json({
