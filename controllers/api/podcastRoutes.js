@@ -10,18 +10,28 @@ const router = require("express").Router();
 const { withAuth, withAuthJson } = require("../../utils/auth");
 const { Review, Podcast, User } = require("../../models");
 
-// POST /api/podcast -- create a new podcast
+// POST /api/podcast -- create a new podcast and review
 router.post("/", withAuthJson, async (req, res) => {
   try {
-    const podcastData = await Podcast.create({
-      ...req.body,
-      user_id: req.session.user_id,
-      username: req.session.username,
+
+    const isUnique = await Podcast.findOne({
+      where: {
+        name: req.body.name
+      }
     });
+    
+    if(isUnique){
+      res.status(400).json({
+        message: "This podcast already exists"
+      })
+    } 
 
+    const podcastData = await Podcast.create({
+      name:req.body.name
+    })
     const podcasts = podcastData.toJSON();
-
-    res.json(podcasts);
+    res.status(200).json(podcasts)
+ 
   } catch (err) {
     res.status(400).json({
       message: "Bad request",

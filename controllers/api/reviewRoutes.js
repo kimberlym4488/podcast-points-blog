@@ -13,13 +13,11 @@ router.post("/", withAuth, async (req, res) => {
     });
     console.log(reviewData);
     if (reviewData) {
-      console.log("Review already exists");
       res.status(404).json({
         message: "This review has already been created.",
       });
       return;
     } else {
-      console.log("Should create a new review, it doesn't exist");
       const reviewNew = await Review.create({
         ...req.body,
         user_id: req.session.user_id,
@@ -100,7 +98,7 @@ router.delete("/", withAuthJson, async (req, res) => {
   try {
     const reviewDelete = await Review.destroy({
       where: {
-        id: req.params.id,
+        id: req.body.review_id,
       },
     });
 

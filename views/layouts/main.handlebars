@@ -4,8 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Podcast-Points</title>
+    {{! Local Styling }}
     <link rel="stylesheet" href="/css/jass.css" />
     <link rel="stylesheet" href="/css/style.css" />
+
+    {{! Bootstrap Icon and Styling }}
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css"
@@ -21,12 +24,25 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
     />
 
+    {{! jquery min script }}
+    <script
+      src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+    ></script>
+    {{! Bootstrap Script }}
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+    ></script>
+
   </head>
 
   <body>
 
     <nav class="sticky-top align-items-center">
-      <div class="align-items-center p-3" style="font-weight:light; color:#009ecc; font-size:1.5rem">Podcast of the Month</div>
+      <div
+        class="align-items-center p-3"
+        style="font-weight:light; color:#009ecc; font-size:1.5rem"
+      >Podcast of the Month</div>
       <a class="homeButton" style="font-size:1.25rem" href="/">Home</a>
       {{#if loggedIn}}
         <a
@@ -40,7 +56,7 @@
       {{/if}}
     </nav>
 
-    <main class="container ">
+    <main class="container">
       {{{body}}}
     </main>
 
@@ -71,6 +87,16 @@
     {{#if loggedIn}}
       <script src="/js/logout.js"></script>
     {{/if}}
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/toastify-js"
+    ></script>
+    <script src="/js/toast.js"></script>
   </body>
 
 </html>

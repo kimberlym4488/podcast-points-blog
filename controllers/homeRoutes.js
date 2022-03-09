@@ -13,7 +13,6 @@ router.get("/", async (req, res) => {
   try {
     res.render("homepage", {
       loggedIn: req.session.loggedIn,
-      toast: req.query.toast,
     });
   } catch (err) {
     console.log(err);
@@ -27,9 +26,7 @@ router.get("/login", (req, res) => {
     res.redirect("/");
     return;
   }
-  res.render("login", {
-    toast: req.query.toast,
-  });
+  res.render("login", {});
 });
 
 //signup
@@ -41,44 +38,39 @@ router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
-// get one podcast
-router.get("/podcast/:id", async (req, res) => {
+// get all podcast and reviews. No login required.
+router.get("/podcasts", async (req, res) => {
   try {
-    const podcastsData = await Podcast.findByPk(); // Server-side render
+    const reviewsData = await Review.findAll({
+      include: [
+        {
+          model: User,
+          attributes: ["id", "username"],
+        },
+        { model: Podcast, attributes: ["id", "name"] },
+      ],
+      order: [["rating", "DESC"]],
+    });
 
-    const podcasts = podcastsData.map((podcast) => podcast.toJSON());
-
-    res.render("podcast", {
-      podcasts,
+    const reviews = reviewsData.map((review) => review.toJSON());
+    console.log(reviews);
+    res.render("podcasts", {
+      reviews,
       loggedIn: req.session.loggedIn,
       user_id: req.session.user_id,
-      username: req.session.username,
     });
   } catch (err) {
     res.status(400).json({
-      message:
-        "THis is an Error. It's getting through to home route with auth. Testing if it is getting to the podcast, id route.",
+      message: "Request denied.",
     });
   }
 });
 
-//get all podcasts
-router.get("/podcast", async (req, res) => {
+//get username passed through to the create podcast page, render podcast handlebars
+router.get("/podcast", withAuthJson, async (req, res) => {
   try {
-    const podcastsData = await Podcast.findAll({
-      include: [
-        {
-          model: Review,
-          where: {
-            user_id: req.session.user_id,
-          },
-        },
-      ],
-    });
-    const podcasts = podcastsData.map((podcast) => podcast.toJSON());
-
-    res.render("podcast", {
-      podcasts,
+    res.render("create", {
+      user_id: req.session.user_id,
       loggedIn: req.session.loggedIn,
     });
   } catch (err) {
@@ -102,6 +94,7 @@ router.get("/view", withAuth, async (req, res) => {
       where: {
         user_id: req.session.user_id,
       },
+      order: [["name", "ASC"]],
     });
     const reviews = reviewData.map((review) => review.toJSON());
 
@@ -112,8 +105,7 @@ router.get("/view", withAuth, async (req, res) => {
     console.log(reviews);
   } catch (err) {
     res.status(400).json({
-      message:
-        "THis is an Error. It's getting through to home route with auth. Testing if it is going here.",
+      message: "Error",
     });
   }
 });
@@ -121,17 +113,27 @@ router.get("/view", withAuth, async (req, res) => {
 //view one review
 router.get("/review/:id", withAuth, async (req, res) => {
   try {
-    const reviewData = await Review.findByPk(req.params.id, {
+    const reviewData = await Review.findOne({
       where: {
-        user_id: req.session.user_id,
+        id: req.params.id,
       },
+
+      include: [
+        {
+          model: User,
+          attributes: ["id", "username"],
+        },
+        {
+          model: Podcast,
+          attributes: ["id", "name"],
+        },
+      ],
     });
-    console.log(reviewData);
-    const reviews = reviewData.map((review) => review.toJSON());
+
+    const reviews = reviewData.toJSON();
     console.log(reviews);
     res.render("reviewone", {
       reviews,
-      loggedIn: req.session.loggedIn,
     });
   } catch (err) {
     res.status(400).json({
@@ -143,7 +145,9 @@ router.get("/review/:id", withAuth, async (req, res) => {
 // create review helper function to render the review page and pass podcast list to the user.
 router.get("/review", withAuth, async (req, res) => {
   try {
-    const podcastsData = await Podcast.findAll();
+    const podcastsData = await Podcast.findAll({
+      order: [["name", "ASC"]],
+    });
     // Server-side render
     const podcasts = podcastsData.map((podcast) => podcast.toJSON());
 
@@ -166,9 +170,7 @@ router.get("/logout", (req, res) => {
     res.redirect("/");
     return;
   }
-  res.render("logout", {
-    toast: req.query.toast,
-  });
+  res.render("signup");
 });
 
 module.exports = router;

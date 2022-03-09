@@ -13,9 +13,9 @@
       <div class="col">
         <div class="card bg-dark">
           <div class="card-body">
-            <h5 class="card-title p-2">Search Podcasts + Reviews</h5>
+            <h5 class="card-title p-2">View Podcasts + Reviews</h5>
 
-            <a href="/podcast" id="searchButton" class="submitBtn btn btn-md">
+            <a href="/podcasts" id="searchButton" class="submitBtn btn btn-md">
               <i
                 class="bi bi-search text-center"
                 alt="search-image"
@@ -31,7 +31,8 @@
         <div class="card bg-dark">
 
           <div class="card-body">
-            <h5 href="/review" class="card-title p-2">Create a Podcast Review</h5>
+            <h5 href="/review" class="card-title p-2">Add a review and/or
+              Podcast</h5>
 
             <a href="/review" id="createButton" class="submitBtn btn btn-md">
               <i
@@ -56,7 +57,7 @@
                 alt="share-image"
                 style="font-size: 1rem; color: #009ecc"
               ></i>
-              Update</a>
+              Update or Delete</a>
 
           </div>
         </div>
@@ -68,10 +69,10 @@
             <h5 class="card-title p-2">Share with friends</h5>
 
             <a
-              href="/share"
               id="shareButton"
               class="submitBtn btn btn-md"
-              style="color:white"
+              style="color:white; cursor:pointer"
+              onclick="share()"
             >
               <i
                 class="bi bi-share-fill text-center"
@@ -86,4 +87,4 @@
   </div>
 </div>
 
-{{! <script src="/js/homepage.js"></script> }}
+<script src="/js/homepage.js"></script>
