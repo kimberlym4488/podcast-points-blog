@@ -7,6 +7,5 @@ const podcastRoutes = require("./podcastRoutes")
 router.use("/user", userRoutes);
 router.use("/review", reviewRoutes);
 router.use('/podcast', podcastRoutes)
-//router.use("/html", htmlRoutes);
 
 module.exports = router;

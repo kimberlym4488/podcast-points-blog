@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { withAuth, withAuthJson } = require("../utils/auth");
-const { Podcast, Review, User, Interest } = require("../models");
+const { Podcast, Review, User } = require("../models");
 const { sequelize } = require("sequelize");
 // const api = require("podcast-index-api")(
 //   "HH7AMGUBSPCX9GVK9CUD",
