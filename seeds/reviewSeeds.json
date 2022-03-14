@@ -10,5 +10,41 @@
         "review": "They're ok. Wish they had more recaps!",
         "user_id": "2",
         "podcast_id": "2"
+    },
+    {
+        "rating": "2",
+        "review": "Really disappointed by this one. The voices are just so irritating!",
+        "user_id": "4",
+        "podcast_id": "1"
+    },
+    {
+        "rating": "5",
+        "review": "Can't get enough of this!",
+        "user_id": "3",
+        "podcast_id": "1"
+    },
+    {
+        "rating": "4",
+        "review": "When you know, you know. Really happy with this pod.",
+        "user_id": "2",
+        "podcast_id": "1"
+    },
+    {
+        "rating": "5",
+        "review": "Y'all HAVE to listen! ",
+        "user_id": "4",
+        "podcast_id": "2"
+    },
+    {
+        "rating": "1",
+        "review": "Let's get some new hosts. If I wanted to listen to whining I'd go talk to my children",
+        "user_id": "4",
+        "podcast_id": "5"
+    },
+    {
+        "rating": "5",
+        "review": "I look forward to this every week. Helps me feel so much more connected to other human beings",
+        "user_id": "4",
+        "podcast_id": "3"
     }
 ]

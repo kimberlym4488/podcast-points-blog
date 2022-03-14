@@ -1,14 +1,20 @@
 [
   {
-    "name": "Rosecast",
-    "category": "realityTV"
+    "name": "Rosecast"
   },
   {
-    "name": "ClickBait",
-    "category": "password12@gmail.com"
+    "name": "ClickBait"
   },
   {
-    "name": "Bachelor_Happy_Hour",
-    "category": "password12@gmail.com"
+    "name": "Bachelor_Happy_Hour"
+  },
+  {
+    "name": "This American Life"
+  },
+  {
+    "name": "The Daily"
+  },
+  {
+    "name": "Bros_with_a_Rose"
   }
 ]
