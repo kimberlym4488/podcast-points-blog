@@ -1,7 +1,7 @@
 const User = require("./User");
 const Podcast = require("./Podcast");
 const Review = require("./Review");
-const Interest = require("./Interest");
+// const Interest = require("./Interest");
 //need to verify models with team
 
 //User can have many reviews
@@ -10,9 +10,9 @@ User.hasMany(Review, {
   onDelete: "CASCADE",
 });
 
-User.hasMany(Interest, {
-  foreignKey: "user_id",
-});
+// User.hasMany(Interest, {
+//   foreignKey: "user_id",
+// });
 
 // Reviews belong to a user
 Review.belongsTo(User, {
@@ -25,14 +25,14 @@ Podcast.hasMany(Review, {
   onDelete: "CASCADE",
 });
 
-// A podcast has interest
-Podcast.hasMany(Interest, {
-  foreignKey: "podcast_id",
-});
+// // A podcast has interest
+// Podcast.hasMany(Interest, {
+//   foreignKey: "podcast_id",
+// });
 
 // Reviews belong to a podcast
 Review.belongsTo(Podcast, {
   foreignKey: "podcast_id",
 });
 
-module.exports = { User, Podcast, Review, Interest };
+module.exports = { User, Podcast, Review };
