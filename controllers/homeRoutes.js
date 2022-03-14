@@ -38,10 +38,41 @@ router.get("/signup", (req, res) => {
   res.render("signup");
 });
 
-// get all podcast and reviews. No login required.
-router.get("/podcasts", async (req, res) => {
+// get the podcast of the month. Signup/Login not required. Working in mySql Workbench but only console logging a single number (10) when trying here. Says toJSON invalid,
+router.get("/potm", async (req, res) => {
+  try {
+    const topPodcast = await Review.sum("rating", {
+      group: "podcast_id",
+      include: [
+        {
+          model: Podcast,
+          attributes: ["id", "name"],
+        },
+      ],
+      order: [["rating", "DESC"]],
+      limit: 5,
+    });
+
+    const podcast = topPodcast.toJSON();
+
+    res.render("potm", {
+      podcast,
+    });
+  } catch (err) {
+    console.log(err);
+    res.status(400).json({
+      message: "Couldn't get podcast of the month.",
+    });
+  }
+});
+
+// get one podcast and all reviews. No login required.
+router.get("/podcast/:id", async (req, res) => {
   try {
     const reviewsData = await Review.findAll({
+      where: {
+        podcast_id: req.params.id,
+      },
       include: [
         {
           model: User,
@@ -53,7 +84,40 @@ router.get("/podcasts", async (req, res) => {
     });
 
     const reviews = reviewsData.map((review) => review.toJSON());
-    console.log(reviews);
+
+    res.render("podcast", {
+      reviews,
+
+      loggedIn: req.session.loggedIn,
+      user_id: req.session.user_id,
+    });
+  } catch (err) {
+    res.status(400).json({
+      message: "Request denied.",
+    });
+  }
+});
+
+// get all podcast and reviews. No login required.
+router.get("/podcasts", async (req, res) => {
+  try {
+    const reviewsData = await Review.findAll({
+      order: [["rating", "DESC"]],
+      include: [
+        {
+          model: User,
+          attributes: ["id", "username"],
+        },
+        {
+          model: Podcast,
+          attributes: ["id", "name"],
+          order: [["name", "ASC"]],
+        },
+      ],
+    });
+
+    const reviews = reviewsData.map((review) => review.toJSON());
+
     res.render("podcasts", {
       reviews,
       loggedIn: req.session.loggedIn,
@@ -84,25 +148,27 @@ router.get("/podcast", withAuthJson, async (req, res) => {
 router.get("/view", withAuth, async (req, res) => {
   try {
     const reviewData = await Review.findAll({
+      where: {
+        user_id: req.session.user_id,
+      },
       include: [
         {
           model: User,
           attributes: ["id", "username"],
         },
-        { model: Podcast, attributes: ["id", "name"] },
+        {
+          model: Podcast,
+          attributes: ["id", "name"],
+          order: [["name", "ASC"]],
+        },
       ],
-      where: {
-        user_id: req.session.user_id,
-      },
-      order: [["name", "ASC"]],
     });
     const reviews = reviewData.map((review) => review.toJSON());
-
+    console.log(reviews);
     res.render("view", {
       reviews,
       loggedIn: req.session.loggedIn,
     });
-    console.log(reviews);
   } catch (err) {
     res.status(400).json({
       message: "Error",
@@ -131,7 +197,7 @@ router.get("/review/:id", withAuth, async (req, res) => {
     });
 
     const reviews = reviewData.toJSON();
-    console.log(reviews);
+
     res.render("reviewone", {
       reviews,
     });

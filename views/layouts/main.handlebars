@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Podcast-Points</title>
+    <title>Podcast of the Month</title>
     {{! Local Styling }}
     <link rel="stylesheet" href="/css/jass.css" />
     <link rel="stylesheet" href="/css/style.css" />
@@ -42,7 +42,11 @@
       <div
         class="align-items-center p-3"
         style="font-weight:light; color:#009ecc; font-size:1.5rem"
-      >Podcast of the Month</div>
+      >
+        <a href="/potm">
+          Podcast of the Month</a>
+      </div>
+
       <a class="homeButton" style="font-size:1.25rem" href="/">Home</a>
       {{#if loggedIn}}
         <a
@@ -56,7 +60,7 @@
       {{/if}}
     </nav>
 
-    <main class="container">
+    <main class="container mt-3">
       {{{body}}}
     </main>
 

@@ -24,7 +24,9 @@ https://github.com/kimberlym4488/podcast-points-blog.git
 
 ## Project Description
 
-The place for Podcast enthusiasts. Love it? Hate it? Rate it! Built from scratch using css, html, js, node, express, mySQL, handlebars, bootstrap!
+The place for Podcast enthusiasts. Love it? Hate it? Rate it! Built from scratch using css, html, js, node, express, mySQL, handlebars, and bootstrap!
+
+Add your own podcast or review existing podcasts. Every rating goes toward the podcast of the month. Share the app with friends and have fun binging and discussing the best podcasts!
 
 ## Installation
 
@@ -32,7 +34,7 @@ Visit the website, create an account, and have fun pointing out everything you l
 
 ## Usage
 
-Review podcasts, see what others are saying, and find podcasts + reviews from the expansive Spotify API library.
+Review podcasts, see what others are saying, and find or add podcasts + reviews
 
 ## Test Instructions
 
@@ -44,7 +46,7 @@ Please contact me before contributing to this app.
 
 ## Preview Image
 
-![Site-preview-image](https://user-images.githubusercontent.com/92805933/155050689-2cda558d-8dc2-496e-a14c-a3b6a854953c.PNG)
+![image](https://user-images.githubusercontent.com/92805933/158256272-38c948b9-a7e4-4e99-8bbb-e591c0ff1161.png)(https://podcast-points.herokuapp.com/)
 
 ## GitHub userName
 

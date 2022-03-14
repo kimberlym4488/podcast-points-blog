@@ -11,7 +11,6 @@ router.post("/", withAuth, async (req, res) => {
         podcast_id: req.body.podcast_id,
       },
     });
-    console.log(reviewData);
     if (reviewData) {
       res.status(404).json({
         message: "This review has already been created.",
@@ -41,7 +40,7 @@ router.put("/update/:podcast_id", withAuthJson, async (req, res) => {
         user_id: req.session.user_id,
       },
     });
-    console.log("This is find review", findReview);
+
     const reviewData = await Review.update(
       {
         rating: req.body.rating,
@@ -53,7 +52,7 @@ router.put("/update/:podcast_id", withAuthJson, async (req, res) => {
         },
       }
     );
-    console.log("This is update review", reviewData);
+
     // const reviews = reviewData.map((review) => review.toJSON());
     if (reviewData[0] === 1) {
       res.status(200).json(reviewData);

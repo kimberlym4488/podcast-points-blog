@@ -7,4 +7,5 @@ module.exports = {
       date
     ).getDate()}/${new Date(date).getFullYear()}`;
   },
+
 };
