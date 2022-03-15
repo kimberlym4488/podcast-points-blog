@@ -7,5 +7,7 @@ module.exports = {
       date
     ).getDate()}/${new Date(date).getFullYear()}`;
   },
-
+  log: (something) => {
+    return console.log(something);
+  },
 };

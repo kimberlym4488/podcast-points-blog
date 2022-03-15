@@ -41,8 +41,9 @@ router.get("/signup", (req, res) => {
 // get the podcast of the month. Signup/Login not required. Working in mySql Workbench but only console logging a single number (10) when trying here. Says toJSON invalid,
 router.get("/potm", async (req, res) => {
   try {
-    const topPodcast = await Review.sum("rating", {
+    const reviewData = await Review.findAll({
       group: "podcast_id",
+      
       include: [
         {
           model: Podcast,
@@ -50,13 +51,16 @@ router.get("/potm", async (req, res) => {
         },
       ],
       order: [["rating", "DESC"]],
-      limit: 5,
+      limit: 1,
     });
 
-    const podcast = topPodcast.toJSON();
-
+    const reviews = reviewData.map((review) => {
+      console.log(review.toJSON());
+      return review.toJSON();
+    });
+    // console.log(reviews);
     res.render("potm", {
-      podcast,
+      reviews,
     });
   } catch (err) {
     console.log(err);
