@@ -53,7 +53,7 @@ router.put("/update/:podcast_id", withAuthJson, async (req, res) => {
       }
     );
 
-    // const reviews = reviewData.map((review) => review.toJSON());
+    const reviews = reviewData.map((review) => review.toJSON());
     if (reviewData[0] === 1) {
       res.status(200).json(reviewData);
     } else {

@@ -43,7 +43,7 @@ router.get("/potm", async (req, res) => {
   try {
     const reviewData = await Review.findAll({
       group: "podcast_id",
-      
+
       include: [
         {
           model: Podcast,

@@ -18,33 +18,32 @@ const submitReview = async (event) => {
   });
 
   if (response.ok) {
-    document.location.replace(
-      "/?toast=" + encodeURI(`Review submitted successfully!`)
-    );
+    localStorage.setItem("toast", "You have submitted a review.");
+    document.location.replace("/");
   } else {
-    alert("Review already exists, we'll attempt to update your data.");
+    const update = await fetch(
+      `/api/review/update/${parseInt(
+        document.querySelector("#podcast-select").value
+      )}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(body),
+      }
+    );
 
-    const update = await fetch(`/api/review/update/${parseInt(document.querySelector("#podcast-select").value)}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(body),
-    });
-console.log(update);
-alert("Check console.log");
     if (update.ok) {
-      document.location.replace(
-        "/?toast=" + encodeURI(`Review updated successfully!`)
-      );
+      localStorage.setItem("toast", "You have submitted a review.");
+      document.location.replace("/");
     } else {
-      document.location.replace(
-        "/?toast=" +
-          encodeURI("Sorry, this failed to update. Please try again.")
-      );
+      localStorage.setItem("toast", "Failed to complete review.");
+      toastIt(true);
     }
   }
 };
+
 document
   .querySelector("#submit-review")
   .addEventListener("click", submitReview);
