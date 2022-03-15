@@ -22,6 +22,8 @@ https://github.com/kimberlym4488/podcast-points-blog.git
 
 ## Video Walkthrough
 
+https://www.loom.com/share/b4c04d307b9d45248692faf22c106d1d
+
 ## Project Description
 
 The place for Podcast enthusiasts. Love it? Hate it? Rate it! Built from scratch using css, html, js, node, express, mySQL, handlebars, and bootstrap!

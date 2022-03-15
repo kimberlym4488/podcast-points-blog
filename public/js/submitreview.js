@@ -20,29 +20,13 @@ const submitReview = async (event) => {
   if (response.ok) {
     localStorage.setItem("toast", "You have submitted a review.");
     document.location.replace("/");
-  } else {
-    const update = await fetch(
-      `/api/review/update/${parseInt(
-        document.querySelector("#podcast-select").value
-      )}`,
-      {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(body),
-      }
-    );
-
-    if (update.ok) {
-      localStorage.setItem("toast", "You have submitted a review.");
-      document.location.replace("/");
-    } else {
+  }
+   else {
       localStorage.setItem("toast", "Failed to complete review.");
       toastIt(true);
     }
-  }
-};
+}
+
 
 document
   .querySelector("#submit-review")
