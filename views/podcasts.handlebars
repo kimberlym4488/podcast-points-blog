@@ -1,0 +1,18 @@
+{{! viewing all podcasts }}
+
+<div class="card-deck row">
+  {{#each reviews as |review|}}
+
+    <div class="card" data-id="{{rating}}">
+      <div class="card-body">
+        <h5 class="card-title fs-4">{{podcast.name}}</h5>
+        <p class="card-text average-rating">Rating:{{review.rating}}</p>
+        <a
+          class="fs-6"
+          style="color:black; background-color:white!important"
+          href="/podcast/{{podcast.id}}"
+        >View all Reviews</a><br />
+      </div>
+    </div>
+  {{/each}}
+</div>

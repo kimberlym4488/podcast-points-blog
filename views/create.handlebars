@@ -1,0 +1,67 @@
+<link rel="stylesheet" href="/css/starrating.css" />
+<link rel="stylesheet" href="/css/buttonstyle.css" />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+/>
+<div>
+
+  <form class="submit-review rounded-3 row g-2 m-2 p-2">
+    <h2
+      class="text-start pt-2 pb-4 border-bottom border-3"
+      style="border-color: #283130"
+    >Let's hear it!</h2>
+    <div class="col-md-12">
+      <label for="podcast-name" class="form-label">Add a podcast</label>
+      <textarea
+        maxlength="50"
+        class="form-control"
+        id="podcast-name"
+        name="podcast-name"
+      ></textarea>
+      <br /><br />
+    </div>
+
+    <div class="col-md-12">
+      <label for="rating" class="form-label">Rating</label>
+      <div class="rating-css">
+        <div class="star-icon">
+          <input type="radio" name="r" id="r1" value="1" checked="true" />
+          <label
+            for="r1"
+            class="fa fa-headphones-alt bg-white"
+            style=""
+          ></label>
+          <input type="radio" name="r" id="r2" value="2" />
+          <label for="r2" class="fa fa-headphones-alt"></label>
+          <input type="radio" name="r" id="r3" value="3" />
+          <label for="r3" class="fa fa-headphones-alt"></label>
+          <input type="radio" name="r" id="r4" value="4" />
+          <label for="r4" class="fa fa-headphones-alt"></label>
+          <input type="radio" name="r" id="r5" value="5" />
+          <label for="r5" class="fa fa-headphones-alt"></label>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12">
+      <label for="review" class="form-label">Review</label>
+      <textarea
+        maxlength="200"
+        class="form-control"
+        id="review"
+        name="review"
+      ></textarea>
+      <br /><br />
+    </div>
+    <div class="gy-3 py-3 my-3 text-center col-12">
+      <button
+        id="submit-review"
+        type="submit"
+        class="submitBtn btn btn-lg btn-dark"
+        data-id="{{user_id}}"
+      >Share it!</button>
+    </div>
+  </form>
+</div>
+
+<script src="/js/createPodcast.js"></script>

@@ -1,0 +1,12 @@
+{{! viewing top rated podcasts as of today's date. }}
+<div class="card-deck row">
+  <div class="card">
+    <div class="card-body">
+{{#each reviews as |review|}}
+      <h5 class="card-title"><a style ="color:#009eec; background-color:white" href="/podcast/{{podcast.id}}">{{podcast.name}}</a>
+      </h5> 
+
+    </div>
+  </div>
+{{/each}}
+</div>

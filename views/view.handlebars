@@ -1,0 +1,54 @@
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+/>
+{{!-- viewing and updating my reviews. --}}
+
+<div>
+{{! viewing all podcasts }}
+<div class="card-deck row">
+    <div class="card">
+          <h4 class="card-title">My reviews</h4>
+  {{#each reviews as |review|}}
+<div class="card">
+      <div class="card-body">
+        <h5 class="card-title fs-5">{{podcast.name}}</h5>
+  
+           <p class="card-text" >
+           <span style="color:black fs-6"> My rating:<span >{{review.rating}}</span><br><span class="fs-7" ><a style="color:#009ecc; background-color:white" href = "/review/{{review.id}}">Edit or delete review</a></span> 
+           </a>
+           <br>
+           <span style="color:black fs-6"> My review:</span>
+           <span>{{review.review}}<br></span>
+            <a class="fs-6" style="color:black; background-color:white!important" href = "/podcast/{{podcast.id}}">View all Podcast Details</a><br>
+            </p>
+      </div>
+    </div>
+  {{/each}}
+</div>
+
+  
+    <div>
+    <h4 class="bi bi-plus-circle" style="color:#009ecc; cursor:pointer"><a class="text-decoration-none bg-transparent" style="color:#009ecc" href="/podcast"> Add a Podcast</a></h4>
+    </div>
+
+
+     <div class="col">
+        <div class="card bg-dark">
+          <div class="card-body">
+            <h5 class="card-title p-2">View All Podcasts + Reviews</h5>
+
+            <a href="/podcast" id="searchButton" class="submitBtn btn btn-md">
+              <i
+                class="bi bi-search text-center"
+                alt="search-image"
+                style="font-size: 1rem; color: #009ecc"
+              ></i>
+              Search</a>
+
+          </div>
+        </div>
+      </div>
+</div>
+</div>  

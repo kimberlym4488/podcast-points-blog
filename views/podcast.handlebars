@@ -1,0 +1,33 @@
+{{! viewing all podcasts }}
+<section class="justify-content-center mt-3">
+  <div class="card-deck row">
+    {{log reviews.podcast.name}}
+    {{#each reviews as |review|}}
+
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title fs-4">{{podcast.name}}</h5>
+          <p class="card-text">Rating:{{review.rating}}</p>
+
+          <p style="color:black">{{review.review}}</p>
+        </div>
+      </div>
+    {{/each}}
+
+    <div class="card bg-dark">
+
+      <div class="card-body">
+        <h5 href="/review" class="card-title p-2">Add your review</h5>
+
+        <a href="/review" id="createButton" class="submitBtn btn btn-md">
+          <i
+            class="bi bi-plus-circle text-center"
+            alt="search-image"
+            style="font-size: 1.10rem; color: #009ecc"
+          ></i>
+          Create</a>
+
+      </div>
+    </div>
+  </div>
+</section>
