@@ -22,7 +22,7 @@ https://github.com/kimberlym4488/podcast-points-blog.git
 
 ## Video Walkthrough
 
-https://www.loom.com/share/b4c04d307b9d45248692faf22c106d1d
+https://www.loom.com/share/d956fcd274b34552952ad0b18fee2975
 
 ## Project Description
 
